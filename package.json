@@ -9,6 +9,7 @@
     "@shoutem/ui": "^0.8.5",
     "react": "15.3.2",
     "react-native": "0.33.0",
+    "react-native-drawer": "^2.3.0",
     "react-native-router-flux": "^3.35.0"
   }
 }

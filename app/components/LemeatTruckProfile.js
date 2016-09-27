@@ -16,7 +16,11 @@ import {
     Divider,
     Tile,
     Screen,
+    NavigationBar,
+    Button,
 } from '@shoutem/ui';
+
+import {Actions} from 'react-native-router-flux';
 
 import Loading from './Loading';
 
@@ -103,6 +107,21 @@ class LemeatTruckProfile extends React.Component {
                             <Divider styleName="line"/>
                         </Screen>
                     </ScrollView>
+                    <NavigationBar
+                        styleName="clear"
+                        leftComponent={(
+                            <Button>
+                                <Icon
+                                    name="back"
+                                    onPress={() => Actions.pop()}/>
+                            </Button>
+                        )}
+                        share={{
+                            link: '',
+                            text: '',
+                            title: 'Lemeat Food Truck Map',
+                        }}
+                    />
                 </Screen>
             );
         }
@@ -117,11 +136,7 @@ LemeatTruckProfile.propTypes = {};
 const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-    list: {
-        width: window.width,
-        paddingLeft: 5,
-        paddingRight: 5,
-    },
+
 })
 
 export default LemeatTruckProfile

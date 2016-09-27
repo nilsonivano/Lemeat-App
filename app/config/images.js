@@ -3,6 +3,7 @@
 const images = {
   logo: require('../images/lemeat_launcher_icon.png'),
   logoWritten: require('../images/lemeat-logo-small-primarycolor.png'),
+  logoWrittenWhite: require('../images/lemeat-logo-small-white.png'),
   icons: {
     home: require('../images/home-icon.png'),
     profile: require('../images/user-icon.png'),
