@@ -21,21 +21,38 @@ import Drawer from 'react-native-drawer'
 import images from '../config/images'
 import {colors} from '../config/styles'
 import ControlPanel from './ControlPanel'
-import {getDistanceFromLatLonInKm, deg2rad} from './auxFunctions'
 
 class LemeatTruckList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            initialPosition: 'unknown',
-            lastPosition: 'unknown',
         };
     }
 
-    watchID: ?number = null;
+    componentWillMount() {
+        fetch('http://lemeat.com/api/truckList')
+            .then((response) => {
+                return response.json();
+            })
+            .then((response) => {
+                //Colocando a imagem certa
+                for (let i = 0; i < response.length; i++) {
+                    let img = response[i].profile.img;
+                    let imgReplace = img.replace("http://localhost:3000", "http://lemeat.com");
+                    response[i].profile.img = imgReplace;
+                }
+                console.log(response);
+                this.setState({
+                    data: response
+                })
+            })
+            .catch((error) => {
+                alert(error);
+                console.error(error);
+            });
+    }
 
-    //Drawer Controls
     closeControlPanel = () => {
         this._drawer.close()
     };
@@ -43,60 +60,21 @@ class LemeatTruckList extends React.Component {
         this._drawer.open()
     };
 
-    //Loading information
-    componentWillMount() {
-        //Getting user location
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                var initialPosition = JSON.stringify(position);
-                console.log(position);
-                this.setState({initialPosition});
-                var userLat = position.coords.latitude;
-                var userLng = position.coords.longitude;
-                fetch('http://lemeat.com/api/truckList?lat=' + userLat + '&lng=' + userLng)
-                    .then((response) => {
-                        return response.json();
-                    })
-                    .then((response) => {
-                        //Colocando a imagem certa
-                        for (let i = 0; i < response.length; i++) {
-                            let img = response[i].profile.img;
-                            let imgReplace = img.replace("http://localhost:3000", "http://lemeat.com");
-                            response[i].profile.img = imgReplace;
-                        }
-                        this.setState({
-                            data: response
-                        })
-                    })
-                    .catch((error) => {
-                        alert(error);
-                        console.error(error);
-                    });
-            },
-            (error) => alert(JSON.stringify(error)),
-            {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000}
-        );
-        this.watchID = navigator.geolocation.watchPosition((position) => {
-            var lastPosition = JSON.stringify(position);
-            this.setState({lastPosition});
-        });
-
-    }
-
-    componentWillUnmount() {
-        navigator.geolocation.clearWatch(this.watchID);
-    }
-
     render() {
         if (this.state.data) {
             return (
                 <Drawer
                     ref={(ref) => this._drawer = ref}
-                    type="static"
+                    type="overlay"
                     content={<ControlPanel />}
-                    openDrawerOffset={100}
+                    tapToClose={true}
+                    openDrawerOffset={0.2} // 20% gap on the right side of drawer
+                    panCloseMask={0.2}
+                    closedDrawerOffset={-3}
                     styles={drawerStyles}
-                    tweenHandler={Drawer.tweenPresets.parallax}
+                    tweenHandler={(ratio) => ({
+                        main: { opacity:(2-ratio)/2 }
+                    })}
                 >
                     <Screen styleName="paper">
                         <ListView
@@ -166,12 +144,14 @@ const styles = StyleSheet.create({
         backgroundColor: colors.defaultPrimaryColor
     },
     NavigationBarLogo: {
-        width: 40
+        marginTop: 15,
+        marginBottom: 10,
+        height: 30
     }
 });
 
 const drawerStyles = {
-    drawer: {shadowColor: 'gray', shadowOpacity: 0.2, shadowRadius: 3},
+    drawer: { shadowColor: '#000000', shadowOpacity: 0.8, shadowRadius: 3},
     main: {paddingLeft: 3},
 }
 
