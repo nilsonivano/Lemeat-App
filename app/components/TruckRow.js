@@ -29,7 +29,7 @@ class TruckRow extends React.Component {
                         <Subtitle>{this.props.truckName}</Subtitle>
                         <Caption>{this.props.speciality}</Caption>
                         <View styleName="horizontal space-between">
-                            <Caption>{this.props.truckAgenda}</Caption>
+
                             <Caption>{this.props.distance}</Caption>
                         </View>
                     </View>
@@ -43,7 +43,6 @@ class TruckRow extends React.Component {
 TruckRow.defaultProps = {
     truckName: "Truck Name",
     truckAgenda: "Lalala",
-    distance: "2km"
 }
 
 TruckRow.propTypes = {
