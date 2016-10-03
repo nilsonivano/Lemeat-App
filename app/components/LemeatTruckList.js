@@ -109,8 +109,14 @@ class LemeatTruckList extends React.Component {
                                         truckName={truck.profile.name}
                                         speciality={truck.profile.speciality}
                                         img={truck.profile.img}
-                                        truckAgenda={truck.dateStart}
-                                        distance={truck.userDistance}/>
+                                        mainCity={truck.profile.mainCity}
+                                        tags={truck.profile.tags}
+                                        agendaStart={truck.dateStart}
+                                        agendaEnd={truck.dateEnd}
+                                        distance={truck.userDistance}
+                                        statusOpen={truck.statusOpen}
+                                        haveAgenda={truck.haveAgenda}
+                                    />
                                 )
                             }
                             }
@@ -151,7 +157,48 @@ class LemeatTruckList extends React.Component {
             )
         } else {
             return (
-                <Loading/>
+                <Drawer
+                    ref={(ref) => this._drawer = ref}
+                    type="static"
+                    content={<ControlPanel />}
+                    openDrawerOffset={100}
+                    styles={drawerStyles}
+                    tweenHandler={Drawer.tweenPresets.parallax}
+                >
+                    <Screen styleName="paper">
+                        <Loading/>
+                        <NavigationBar
+                            style={styles.NavigationBar}
+                            leftComponent={
+                                <Button
+                                    onPress={() => this.openControlPanel()}>
+                                    <Icon name="sidebar"/>
+                                </Button>
+                            }
+                            centerComponent={<Image
+                                style={styles.NavigationBarLogo}
+                                source={images.logoWritten}
+                                resizeMode='contain'
+                            />}
+                            rightComponent={<DropDownMenu
+                                options={[
+                                    {name: 'Todos', value: 1},
+                                    {name: 'Sport', value: 1},
+                                    {name: 'World', value: 1},
+                                    {name: 'Lifestyle', value: 1},
+                                    {name: 'Food', value: 1},
+                                    {name: 'Music', value: 1},
+                                    {name: 'Movies', value: 1},
+                                    {name: 'Tech', value: 1},
+                                    {name: 'Fun', value: 1},
+                                    {name: 'Fashion', value: 1},
+                                ]}
+                                titleProperty="name"
+                                valueProperty="value"
+                            />}
+                        />
+                    </Screen>
+                </Drawer>
             )
         }
     }
