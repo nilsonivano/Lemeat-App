@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import {Router, Scene} from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {colors} from './config/styles';
 
 //importing layouts
 import TruckMap from './components/TruckMap';
@@ -9,9 +11,22 @@ import LemeatTruckProfile from './components/LemeatTruckProfile';
 
 // Simple component to render something in place of icon
 const TabIcon = ({selected, title}) => {
-    return (
-        <Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>
-    );
+    switch (title) {
+        case 'Mapa':
+            return (
+                <View>
+                    <Icon name="today" size={24} style={{color: selected ? colors.defaultPrimaryColor : colors.lightPrimaryColor}}/>
+                    {/*<Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>*/}
+                </View>
+            );
+        case 'Lista de Trucks':
+            return (
+                <View>
+                    <Icon name="place" size={24} style={{color: selected ? colors.defaultPrimaryColor : colors.lightPrimaryColor}}/>
+                    {/*<Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>*/}
+                </View>
+            );
+    }
 }
 
 class App extends React.Component {
@@ -23,9 +38,9 @@ class App extends React.Component {
                     <Scene
                         key="tabbar"
                         tabs={true}
-                        tabBarStyle={{backgroundColor: 'white'}}
+                        tabBarStyle={{backgroundColor: 'white', position: 'absolute', top: 69}}
                     >
-                        <Scene key="TruckList" title="Lista de Trucks" icon={TabIcon}>
+                        <Scene key="TruckList" pressOpacity={1} title="Lista de Trucks" icon={TabIcon}>
                             <Scene
                                 key="LemeatTruckList"
                                 component={LemeatTruckList}
@@ -33,7 +48,7 @@ class App extends React.Component {
                                 hideNavBar={true}
                             />
                         </Scene>
-                        <Scene key="map" title="Mapa" icon={TabIcon}>
+                        <Scene key="map" pressOpacity={1} title="Mapa" icon={TabIcon}>
                             <Scene
                                 key="mapa"
                                 component={TruckMap}

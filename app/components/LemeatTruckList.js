@@ -12,8 +12,7 @@ import {
     Screen,
     Icon,
     Title,
-    Button,
-    DropDownMenu
+    Button
 } from '@shoutem/ui'
 import TruckRow from './TruckRow'
 import Loading from './Loading'
@@ -122,7 +121,7 @@ class LemeatTruckList extends React.Component {
                             }
                         />
                         <NavigationBar
-                            style={styles.NavigationBar}
+                            stylename="no-border"
                             leftComponent={
                                 <Button
                                     onPress={() => this.openControlPanel()}>
@@ -133,22 +132,6 @@ class LemeatTruckList extends React.Component {
                                 style={styles.NavigationBarLogo}
                                 source={images.logoWritten}
                                 resizeMode='contain'
-                            />}
-                            rightComponent={<DropDownMenu
-                                options={[
-                                    {name: 'Todos', value: 1},
-                                    {name: 'Sport', value: 1},
-                                    {name: 'World', value: 1},
-                                    {name: 'Lifestyle', value: 1},
-                                    {name: 'Food', value: 1},
-                                    {name: 'Music', value: 1},
-                                    {name: 'Movies', value: 1},
-                                    {name: 'Tech', value: 1},
-                                    {name: 'Fun', value: 1},
-                                    {name: 'Fashion', value: 1},
-                                ]}
-                                titleProperty="name"
-                                valueProperty="value"
                             />}
                         />
                     </Screen>
@@ -168,7 +151,7 @@ class LemeatTruckList extends React.Component {
                     <Screen styleName="paper">
                         <Loading/>
                         <NavigationBar
-                            style={styles.NavigationBar}
+                            stylename="no-border"
                             leftComponent={
                                 <Button
                                     onPress={() => this.openControlPanel()}>
@@ -179,22 +162,6 @@ class LemeatTruckList extends React.Component {
                                 style={styles.NavigationBarLogo}
                                 source={images.logoWritten}
                                 resizeMode='contain'
-                            />}
-                            rightComponent={<DropDownMenu
-                                options={[
-                                    {name: 'Todos', value: 1},
-                                    {name: 'Sport', value: 1},
-                                    {name: 'World', value: 1},
-                                    {name: 'Lifestyle', value: 1},
-                                    {name: 'Food', value: 1},
-                                    {name: 'Music', value: 1},
-                                    {name: 'Movies', value: 1},
-                                    {name: 'Tech', value: 1},
-                                    {name: 'Fun', value: 1},
-                                    {name: 'Fashion', value: 1},
-                                ]}
-                                titleProperty="name"
-                                valueProperty="value"
                             />}
                         />
                     </Screen>
