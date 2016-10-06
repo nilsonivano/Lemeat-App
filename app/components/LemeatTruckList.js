@@ -34,14 +34,6 @@ class LemeatTruckList extends React.Component {
 
     watchID: ?number = null;
 
-    //Drawer Controls
-    closeControlPanel = () => {
-        this._drawer.close()
-    };
-    openControlPanel = () => {
-        this._drawer.open()
-    };
-
     //Loading information
     componentWillMount() {
         //Getting user location
@@ -89,83 +81,36 @@ class LemeatTruckList extends React.Component {
     render() {
         if (this.state.data) {
             return (
-                <Drawer
-                    ref={(ref) => this._drawer = ref}
-                    type="static"
-                    content={<ControlPanel />}
-                    openDrawerOffset={100}
-                    styles={drawerStyles}
-                    tweenHandler={Drawer.tweenPresets.parallax}
-                >
-                    <Screen styleName="paper">
-                        <ListView
-                            style={styles.TruckList}
-                            data={this.state.data}
-                            renderRow={function (truck) {
-                                return (
-                                    <TruckRow
-                                        truckId={truck._id}
-                                        truckName={truck.profile.name}
-                                        speciality={truck.profile.speciality}
-                                        img={truck.profile.img}
-                                        mainCity={truck.profile.mainCity}
-                                        tags={truck.profile.tags}
-                                        agendaStart={truck.dateStart}
-                                        agendaEnd={truck.dateEnd}
-                                        distance={truck.userDistance}
-                                        statusOpen={truck.statusOpen}
-                                        haveAgenda={truck.haveAgenda}
-                                    />
-                                )
-                            }
-                            }
-                        />
-                        <NavigationBar
-                            stylename="no-border"
-                            leftComponent={
-                                <Button
-                                    onPress={() => this.openControlPanel()}>
-                                    <Icon name="sidebar"/>
-                                </Button>
-                            }
-                            centerComponent={<Image
-                                style={styles.NavigationBarLogo}
-                                source={images.logoWritten}
-                                resizeMode='contain'
-                            />}
-                        />
-                    </Screen>
-                </Drawer>
-
+                <Screen styleName="paper">
+                    <ListView
+                        style={styles.TruckList}
+                        data={this.state.data}
+                        renderRow={function (truck) {
+                            return (
+                                <TruckRow
+                                    truckId={truck._id}
+                                    truckName={truck.profile.name}
+                                    speciality={truck.profile.speciality}
+                                    img={truck.profile.img}
+                                    mainCity={truck.profile.mainCity}
+                                    tags={truck.profile.tags}
+                                    agendaStart={truck.dateStart}
+                                    agendaEnd={truck.dateEnd}
+                                    distance={truck.userDistance}
+                                    statusOpen={truck.statusOpen}
+                                    haveAgenda={truck.haveAgenda}
+                                />
+                            )
+                        }
+                        }
+                    />
+                </Screen>
             )
         } else {
             return (
-                <Drawer
-                    ref={(ref) => this._drawer = ref}
-                    type="static"
-                    content={<ControlPanel />}
-                    openDrawerOffset={100}
-                    styles={drawerStyles}
-                    tweenHandler={Drawer.tweenPresets.parallax}
-                >
-                    <Screen styleName="paper">
-                        <Loading/>
-                        <NavigationBar
-                            stylename="no-border"
-                            leftComponent={
-                                <Button
-                                    onPress={() => this.openControlPanel()}>
-                                    <Icon name="sidebar"/>
-                                </Button>
-                            }
-                            centerComponent={<Image
-                                style={styles.NavigationBarLogo}
-                                source={images.logoWritten}
-                                resizeMode='contain'
-                            />}
-                        />
-                    </Screen>
-                </Drawer>
+                <Screen styleName="paper">
+                    <Loading/>
+                </Screen>
             )
         }
     }
@@ -183,10 +128,5 @@ const styles = StyleSheet.create({
         width: 40
     }
 });
-
-const drawerStyles = {
-    drawer: {shadowColor: 'gray', shadowOpacity: 0.2, shadowRadius: 3},
-    main: {paddingLeft: 3},
-}
 
 export default LemeatTruckList

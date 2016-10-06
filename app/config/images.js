@@ -13,7 +13,9 @@ const images = {
   avatarPlaceholder: require('../images/avatar-placeholder.png'),
   LemeatNoImage: require('../images/noImage.png'),
   marker:{
-    truck40: require('../images/Lemeat_marker_40.png')
+    truck40: require('../images/Lemeat_marker_40.png'),
+    truck50: require('../images/Lemeat_marker_50.png'),
+    truck100: require('../images/Lemeat_marker_100.png')
   }
 };
 

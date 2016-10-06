@@ -2,22 +2,49 @@ import React from 'react';
 import {
     ListView,
     View,
-    MapView,
     StyleSheet,
     Dimensions,
 } from 'react-native';
 import Loading from './Loading';
+import MapView from 'react-native-maps';
+import images from '../config/images';
 
 class TruckMap extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             loading: true,
-            markers: []
+            markers: [],
+            region: {
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.0922,
+                longitudeDelta: 0.0421,
+            },
         };
     }
 
-    componentWillMount() {
+    getUserLocation() {
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                var currentPosition = {
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421
+                };
+                console.log(currentPosition);
+                this.setState({
+                    region: currentPosition,
+                    loading: false,
+                })
+            },
+            (error) => alert(JSON.stringify(error)),
+            {enableHighAccuracy: false, timeout: 20000, maximumAge: 1000}
+        );
+    }
+
+    getMarkers(){
         fetch('http://lemeat.com/api/truckAgenda')
             .then((response) => {
                 return response.json()
@@ -32,6 +59,10 @@ class TruckMap extends React.Component {
                         let agendaDateEnd = new Date(agenda.dateEnd);
                         if (typeof agenda.lat == 'string' && typeof agenda.lng == 'string' && agendaDateEnd > currentTime) {
                             let marker = {
+                                latlng: {
+                                    latitude: parseFloat(agenda.lat),
+                                    longitude: parseFloat(agenda.lng)
+                                },
                                 latitude: agenda.lat,
                                 longitude: agenda.lng,
                                 title: agenda.truckName,
@@ -40,12 +71,9 @@ class TruckMap extends React.Component {
                             markers.push(marker)
                         }
                     }
-                    console.log(markers);
                     this.setState({
-                        markers: markers,
-                        loading: false,
+                        markers: markers
                     });
-                    console.log(this.state.markers)
                 }
             })
             .catch((error) => {
@@ -54,37 +82,48 @@ class TruckMap extends React.Component {
             });
     }
 
+    componentWillMount() {
+        this.getUserLocation();
+
+    }
+
+    componentDidMount(){
+        this.getMarkers();
+    }
+
     render() {
         if (this.state.loading) {
             return <Loading/>
         }
+        console.log(this.state.markers);
         return (
             <MapView
                 style={styles.map}
-                onRegionChange={() => {
-                }}
-                onRegionChangeComplete={() => {
-                }}
-                showsUserLocation={true}
-                followUserLocation={false}
-                annotations={this.state.markers}
-            />
+                region={this.state.region}>
+                {this.state.markers.map(marker => (
+                    <MapView.Marker
+                        coordinate={marker.latlng}
+                        title={marker.title}
+                        description={marker.description}
+                        image={images.marker.truck100}
+                    />
+                ))}
+            </MapView>
         )
     }
 }
 
 TruckMap.propTypes = {
     markers: React.PropTypes.array
-}
+};
 
-const window = Dimensions.get('window')
+const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     map: {
-        width: window.width,
         height: window.height,
-        flexDirection: 'row'
+        width: window.width,
     }
-})
+});
 
 export default TruckMap
