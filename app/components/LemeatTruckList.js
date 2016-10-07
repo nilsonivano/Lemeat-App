@@ -8,11 +8,6 @@ import {
 } from 'react-native'
 import {
     ListView,
-    NavigationBar,
-    Screen,
-    Icon,
-    Title,
-    Button
 } from '@shoutem/ui'
 import TruckRow from './TruckRow'
 import Loading from './Loading'
@@ -31,8 +26,6 @@ class LemeatTruckList extends React.Component {
             lastPosition: 'unknown',
         };
     }
-
-    watchID: ?number = null;
 
     //Loading information
     componentWillMount() {
@@ -81,9 +74,8 @@ class LemeatTruckList extends React.Component {
     render() {
         if (this.state.data) {
             return (
-                <Screen styleName="paper">
+                <View style={styles.container}>
                     <ListView
-                        style={styles.TruckList}
                         data={this.state.data}
                         renderRow={function (truck) {
                             return (
@@ -104,13 +96,13 @@ class LemeatTruckList extends React.Component {
                         }
                         }
                     />
-                </Screen>
+                </View>
             )
         } else {
             return (
-                <Screen styleName="paper">
+                <View style={styles.container}>
                     <Loading/>
-                </Screen>
+                </View>
             )
         }
     }
@@ -121,12 +113,10 @@ LemeatTruckList.propTypes = {};
 const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-    NavigationBar: {
-        backgroundColor: colors.defaultPrimaryColor
+    container: {
+        flex: 1,
+        marginTop: 90,
     },
-    NavigationBarLogo: {
-        width: 40
-    }
 });
 
 export default LemeatTruckList

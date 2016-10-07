@@ -24,7 +24,7 @@ const TabIcon = ({selected, title}) => {
         case 'Mapa':
             return (
                 <View>
-                    <Icon name="today" size={24}
+                    <Icon name="place" size={24}
                           style={{color: selected ? colors.defaultPrimaryColor : colors.lightPrimaryColor}}/>
                     {/*<Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>*/}
                 </View>
@@ -32,7 +32,7 @@ const TabIcon = ({selected, title}) => {
         case 'Lista de Trucks':
             return (
                 <View>
-                    <Icon name="place" size={24}
+                    <Icon name="today" size={24}
                           style={{color: selected ? colors.defaultPrimaryColor : colors.lightPrimaryColor}}/>
                     {/*<Text style={{color: selected ? 'red' : 'black'}}>{title}</Text>*/}
                 </View>
@@ -58,7 +58,6 @@ class App extends React.Component {
                 <Scene key="drawer"
                        component={LemeatDrawer}
                        open={false}>
-                    {/* Tab Container */}
                     <Scene
                         key="tabbar"
                         tabs={true}
@@ -85,13 +84,12 @@ class App extends React.Component {
                             />
                         </Scene>
                     </Scene>
-                    <Scene
-                        key="LemeatTruckProfile"
-                        component={LemeatTruckProfile}
-                        hideNavBar={true}
-                    />
                 </Scene>
-
+                <Scene
+                    key="LemeatTruckProfile"
+                    component={LemeatTruckProfile}
+                    hideNavBar={true}
+                />
             </Router>
         );
     }

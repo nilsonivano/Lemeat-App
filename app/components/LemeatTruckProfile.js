@@ -2,16 +2,13 @@ import React from 'react';
 import {
     StyleSheet,
     Dimensions,
+    Text,
+    View
 } from 'react-native';
 
 import {
     ScrollView,
-    Icon,
     Row,
-    Subtitle,
-    Text,
-    Title,
-    View,
     Image,
     Divider,
     Tile,
@@ -20,7 +17,12 @@ import {
     Button,
 } from '@shoutem/ui';
 
+import {colors} from '../config/styles';
 import {Actions} from 'react-native-router-flux';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import TruckAgendaList from './TruckAgendaList';
+import ContactList from './ContactList';
+import MenuRow from './MenuRow';
 
 import Loading from './Loading';
 
@@ -32,7 +34,7 @@ class LemeatTruckProfile extends React.Component {
         };
     }
 
-    componentWillMount() {
+    fetchTruckInformation() {
         var lemeatApiAddress = "http://lemeat.com/api/truckInfo?id=";
         console.log(this.props.truckId);
         fetch(lemeatApiAddress + this.props.truckId)
@@ -52,6 +54,10 @@ class LemeatTruckProfile extends React.Component {
             });
     }
 
+    componentWillMount() {
+        this.fetchTruckInformation();
+    }
+
     render() {
         var lemeatEntryPoint = "http://lemeat.com";
         if (this.state.data) {
@@ -65,55 +71,52 @@ class LemeatTruckProfile extends React.Component {
                             key={this.state.data[0].profile.name}
                         >
                             <Tile animationName="hero">
-                                <Title>{this.state.data[0].profile.name}</Title>
-                                <Subtitle>{this.state.data[0].profile.speciality}</Subtitle>
+                                <Text style={styles.truckTitle}>{this.state.data[0].profile.name}</Text>
+                                <Text style={styles.truckSpeciality}>{this.state.data[0].profile.speciality}</Text>
                             </Tile>
                         </Image>
-
                         <Screen styleName="paper">
-                            <Text styleName="md-gutter">{this.state.data[0].profile.fullDescription}</Text>
+                            <View style={styles.container}>
+                                <Text styleName="md-gutter">{this.state.data[0].profile.fullDescription}</Text>
+                            </View>
 
                             <Divider styleName="line"/>
-
-                            <Row>
-                                <Icon name="laptop"/>
-                                <View styleName="vertical">
-                                    <Subtitle>Visitar Página</Subtitle>
-                                    <Text>{this.state.data[0].profile.contacts.website}</Text>
-                                </View>
-                                <Icon name="right-arrow"/>
-                            </Row>
-
+                            <View>
+                                <TruckAgendaList
+                                agendaList={this.state.data[0].agenda}
+                                />
+                            </View>
                             <Divider styleName="line"/>
-
-                            <Row>
-                                <Icon name="email"/>
-                                <View styleName="vertical">
-                                    <Subtitle>Email</Subtitle>
-                                    <Text>{this.state.data[0].profile.contacts.email}</Text>
-                                </View>
-                            </Row>
-
+                            <View>
+                                <ContactList
+                                contacts={this.state.data[0].profile.contacts}
+                                />
+                            </View>
                             <Divider styleName="line"/>
-
-                            <Row>
-                                <Icon name="facebook"/>
-                                <View styleName="vertical">
-                                    <Subtitle>Facebook</Subtitle>
-                                    <Text>{this.state.data[0].profile.contacts.facebook}</Text>
-                                </View>
-                            </Row>
-
-                            <Divider styleName="line"/>
+                            <View>
+                                <MenuRow
+                                menu={this.state.data[0].profile.menu}
+                                />
+                            </View>
                         </Screen>
                     </ScrollView>
                     <NavigationBar
                         styleName="clear"
                         leftComponent={(
                             <Button>
-                                <Icon
-                                    name="back"
-                                    onPress={() => Actions.pop()}/>
+                                <Icon name="arrow-back"
+                                      size={24}
+                                      color='white'
+                                      onPress={() => Actions.pop()}
+                                />
+                            </Button>
+                        )}
+                        rightComponent={(
+                            <Button>
+                                <Icon name="star-border"
+                                      size={24}
+                                      color='white'
+                                />
                             </Button>
                         )}
                         share={{
@@ -136,7 +139,17 @@ LemeatTruckProfile.propTypes = {};
 const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-
+    container:{
+        padding: 10
+    },
+    truckTitle: {
+        color: 'white',
+        fontSize: 24
+    },
+    truckSpeciality: {
+        color: 'white',
+        fontSize: 16
+    }
 })
 
 export default LemeatTruckProfile

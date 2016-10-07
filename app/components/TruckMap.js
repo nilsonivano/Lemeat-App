@@ -50,14 +50,11 @@ class TruckMap extends React.Component {
                 return response.json()
             })
             .then(response => {
-                if (response.status = 'success') {
-                    let currentTime = new Date();
-                    console.log(currentTime);
-                    let agendas = response.data;
+                    let agendas = response;
+                    console.log(agendas);
                     var markers = [];
                     for (agenda of agendas) {
-                        let agendaDateEnd = new Date(agenda.dateEnd);
-                        if (typeof agenda.lat == 'string' && typeof agenda.lng == 'string' && agendaDateEnd > currentTime) {
+                        if (typeof agenda.lat == 'string' && typeof agenda.lng == 'string') {
                             let marker = {
                                 latlng: {
                                     latitude: parseFloat(agenda.lat),
@@ -74,7 +71,6 @@ class TruckMap extends React.Component {
                     this.setState({
                         markers: markers
                     });
-                }
             })
             .catch((error) => {
                 alert(error);
@@ -105,7 +101,7 @@ class TruckMap extends React.Component {
                         coordinate={marker.latlng}
                         title={marker.title}
                         description={marker.description}
-                        image={images.marker.truck100}
+                        image={images.marker.truck150}
                     />
                 ))}
             </MapView>
