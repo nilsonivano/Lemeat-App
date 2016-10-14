@@ -88,10 +88,6 @@ class TruckMap extends React.Component {
     }
 
     render() {
-        if (this.state.loading) {
-            return <Loading/>
-        }
-        console.log(this.state.markers);
         return (
             <MapView
                 style={styles.map}

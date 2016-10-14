@@ -11,79 +11,91 @@ import {colors} from '../config/styles';
 class ContactList extends React.Component {
     getFacebook() {
         var contacts = this.props.contacts;
-        if (contacts.facebook.length > 1) {
-            return (
-                <ContactRow
-                    contactTypeIcon="logo-facebook"
-                    contactType="Facebook"
-                    contactText={contacts.facebook}
-                />
-            )
+        if (contacts.facebook) {
+            if (contacts.facebook.length > 1) {
+                return (
+                    <ContactRow
+                        contactTypeIcon="logo-facebook"
+                        contactType="Facebook"
+                        contactText={contacts.facebook}
+                    />
+                )
+            }
         }
     }
 
     getInstagram() {
         var contacts = this.props.contacts;
-        if (contacts.instagram.length > 1) {
-            return (
-                <ContactRow
-                    contactTypeIcon="logo-instagram"
-                    contactType="Instagram"
-                    contactText={contacts.instagram}
-                />
-            )
+        if (contacts.instagram) {
+            if (contacts.instagram.length > 1) {
+                return (
+                    <ContactRow
+                        contactTypeIcon="logo-instagram"
+                        contactType="Instagram"
+                        contactText={contacts.instagram}
+                    />
+                )
+            }
         }
     }
 
     getTwitter() {
         var contacts = this.props.contacts;
-        if (contacts.twitter.length > 1) {
-            return (
-                <ContactRow
-                    contactTypeIcon="logo-twitter"
-                    contactType="Twitter"
-                    contactText={contacts.twitter}
-                />
-            )
+        if (contacts.twitter) {
+            if (contacts.twitter.length > 1) {
+                return (
+                    <ContactRow
+                        contactTypeIcon="logo-twitter"
+                        contactType="Twitter"
+                        contactText={contacts.twitter}
+                    />
+                )
+            }
         }
     }
 
     getWebsite() {
         var contacts = this.props.contacts;
-        if (contacts.website.length > 1) {
-            return (
-                <ContactRow
-                    contactTypeIcon="md-desktop"
-                    contactType="Website"
-                    contactText={contacts.website}
-                />
-            )
+        if (contacts.website) {
+            if (contacts.website.length > 1) {
+                return (
+                    <ContactRow
+                        contactTypeIcon="md-desktop"
+                        contactType="Website"
+                        contactText={contacts.website}
+                    />
+                )
+            }
         }
     }
 
     getEmail() {
         var contacts = this.props.contacts;
-        if (contacts.email.length > 1) {
-            return (
-                <ContactRow
-                    contactTypeIcon="md-mail"
-                    contactType="Email"
-                    contactText={contacts.email}
-                />
-            )
+        if (contacts.email) {
+            if (contacts.email.length > 1) {
+                return (
+                    <ContactRow
+                        contactTypeIcon="md-mail"
+                        contactType="Email"
+                        contactText={contacts.email}
+                    />
+                )
+            }
         }
     }
 
     getPhone() {
         var contacts = this.props.contacts;
-        if (contacts.phone.length > 1) {
-            return (
-                <ContactRow
-                    contactTypeIcon="md-phone-portrait"
-                    contactType="Telefone"
-                    contactText={contacts.phone}
-                />
-            )
+        if (contacts.phone) {
+            if (contacts.phone.length > 1) {
+                return (
+                    <ContactRow
+                        contactTypeIcon="md-phone-portrait"
+                        contactType="Telefone"
+                        contactText={contacts.phone}
+                    />
+                )
+            }
         }
     }
 
@@ -101,7 +113,9 @@ class ContactList extends React.Component {
     }
 }
 
-ContactList.propTypes = {};
+ContactList.propTypes = {
+    contacts: React.PropTypes.object
+};
 
 const styles = StyleSheet.create({
     container: {

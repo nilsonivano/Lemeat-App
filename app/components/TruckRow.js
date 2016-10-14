@@ -12,7 +12,8 @@ import {
     Image,
     Divider,
 } from '@shoutem/ui';
-import OpenStatusBox from './OpenStatusBox'
+import OpenStatusBox from './OpenStatusBox';
+import Tag from './Tag';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../config/styles';
 import images from '../config/images';
@@ -53,23 +54,19 @@ class TruckRow extends React.Component {
     }
 
     returnTags() {
-        if(this.props.mainCity && this.props.tags){
+        if (this.props.mainCity && this.props.tags) {
             var city = this.props.mainCity;
             var tags = this.props.tags;
             var tagList = [];
             tagList.push(city);
-            for(tag of tags){
+            for (tag of tags) {
                 tagList.push(tag)
             }
-            console.log(tagList);
-            return(
-                tagList.map(function (tag) {
-                    return (
-                        <View style={styles.tagBox}>
-                            <Text style={styles.tagText}>{tag}</Text>
-                        </View>
+            return (
+                tagList.map(tag => (
+                        <Tag tag={tag}/>
                     )
-                })
+                )
             )
         }
     }
@@ -81,7 +78,7 @@ class TruckRow extends React.Component {
                 onPress={() => Actions.LemeatTruckProfile({truckId})}
             >
                 <Row>
-                    <View style={{flexDirection: 'column'}}>
+                    <View style={{flexDirection: 'column', flexWrap: 'wrap'}}>
                         <View style={{flexDirection: 'row'}}>
                             <Image
                                 styleName="medium rounded-corners"
@@ -144,7 +141,7 @@ const styles = StyleSheet.create({
     tagContainer: {
         marginTop: 10,
         flexDirection: 'row',
-
+        flexWrap: 'wrap',
     },
     tagBox: {
         borderRadius: 10,

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
     Text,
     View,
-    TouchableOpacity
+    TouchableOpacity,
+    StyleSheet,
 } from 'react-native';
 import {
     Router,
@@ -55,33 +56,35 @@ class App extends React.Component {
     render() {
         return (
             <Router>
-                <Scene key="drawer"
-                       component={LemeatDrawer}
-                       open={false}>
-                    <Scene
-                        key="tabbar"
-                        tabs={true}
-                        tabBarStyle={{backgroundColor: 'white', position: 'absolute', top: 50}}
-                    >
-                        <Scene key="TruckList" pressOpacity={1} title="Lista de Trucks" icon={TabIcon}>
-                            <Scene
-                                key="LemeatTruckList"
-                                component={LemeatTruckList}
-                                title=""
-                                navigationBarStyle={{backgroundColor: 'white'}}
-                                leftButton={this.renderMenuButton}
-                                hideNavBar={false}
-                            />
-                        </Scene>
-                        <Scene key="map" pressOpacity={1} title="Mapa" icon={TabIcon}>
-                            <Scene
-                                key="mapa"
-                                component={TruckMap}
-                                title=""
-                                navigationBarStyle={{backgroundColor: 'white'}}
-                                leftButton={this.renderMenuButton}
-                                hideNavBar={false}
-                            />
+                <Scene key="root">
+                    <Scene key="drawer"
+                           component={LemeatDrawer}
+                           open={false}>
+                        <Scene
+                            key="tabbar"
+                            tabs={true}
+                            tabBarStyle={{backgroundColor: 'white', position: 'absolute', top: 50}}
+                        >
+                            <Scene key="TruckList" pressOpacity={1} title="Lista de Trucks" icon={TabIcon}>
+                                <Scene
+                                    key="LemeatTruckList"
+                                    component={LemeatTruckList}
+                                    title=""
+                                    navigationBarStyle={{backgroundColor: 'white'}}
+                                    leftButton={this.renderMenuButton}
+                                    hideNavBar={false}
+                                />
+                            </Scene>
+                            <Scene key="map" pressOpacity={1} title="Mapa" icon={TabIcon}>
+                                <Scene
+                                    key="mapa"
+                                    component={TruckMap}
+                                    title=""
+                                    navigationBarStyle={{backgroundColor: 'white'}}
+                                    leftButton={this.renderMenuButton}
+                                    hideNavBar={false}
+                                />
+                            </Scene>
                         </Scene>
                     </Scene>
                 </Scene>
@@ -94,5 +97,7 @@ class App extends React.Component {
         );
     }
 }
+
+const styles = StyleSheet.create({})
 
 export default App;

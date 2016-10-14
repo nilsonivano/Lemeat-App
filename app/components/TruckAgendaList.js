@@ -40,30 +40,40 @@ class TruckAgendaList extends React.Component {
 
     render() {
         var agendaList = this.props.agendaList;
-        var userLoc = this.state.userLoc;
-        for(i = 0; i < agendaList.length; i++){
-            let userDistance = getDistanceFromLatLonInKm(userLoc.lat, userLoc.lng, agendaList[i].lat, agendaList[i].lng);
-            agendaList[i].distance = userDistance;
+        if(agendaList.length > 0){
+            var userLoc = this.state.userLoc;
+            for(i = 0; i < agendaList.length; i++){
+                let userDistance = getDistanceFromLatLonInKm(userLoc.lat, userLoc.lng, agendaList[i].lat, agendaList[i].lng);
+                agendaList[i].distance = userDistance;
+            }
+            return (
+                <View style={{flexDirection: 'row'}}>
+                    <View style={{padding: 10}}>
+                        <Icon name="event-available" size={24} style={{color: colors.defaultPrimaryColor}}/>
+                    </View>
+                    <View style={styles.container}>
+                        {agendaList.map(agenda =>(
+                            <TruckAgendaRow
+                                address={agenda.address}
+                                dateStart={agenda.dateStart}
+                                dateEnd={agenda.dateEnd}
+                                distance={agenda.distance.toFixed(1)}
+                                userLat={agenda.lat}
+                                userLng={agenda.lng}
+                            />
+                        ))}
+                    </View>
+                </View>
+            )
+        } else{
+            return (
+                <View style={{flexDirection: 'row', padding: 10}}>
+                        <Icon name="event-available" size={24} style={{color: colors.defaultPrimaryColor}}/>
+                        <Text style={{marginLeft: 10}}>Sem agenda disponível para os próximos dias</Text>
+                </View>
+            )
         }
-        return (
-            <View style={{flexDirection: 'row'}}>
-                <View style={{padding: 10}}>
-                    <Icon name="event-available" size={24} style={{color: colors.defaultPrimaryColor}}/>
-                </View>
-                <View style={styles.container}>
-                    {agendaList.map(agenda =>(
-                        <TruckAgendaRow
-                            address={agenda.address}
-                            dateStart={agenda.dateStart}
-                            dateEnd={agenda.dateEnd}
-                            distance={agenda.distance.toFixed(1)}
-                            userLat={agenda.lat}
-                            userLng={agenda.lng}
-                        />
-                    ))}
-                </View>
-            </View>
-        )
+
     }
 }
 

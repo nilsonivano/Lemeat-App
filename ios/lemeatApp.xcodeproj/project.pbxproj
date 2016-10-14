@@ -44,6 +44,9 @@
 		D50BF256E1604CE8AE5FF44B /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A89E6C5AD3134925B5253FEA /* Octicons.ttf */; };
 		3D6ABBAD435240C7B5F68CEB /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA0D31A79B324FC3B7100246 /* Zocial.ttf */; };
 		9DF652C792DF431D8E029FF7 /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7BEF11677D024127B8CB9D21 /* libAirMaps.a */; };
+		8826037447BD44E984EB1BBC /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3423C2857BCD44DB9A3A1E9E /* libRealmReact.a */; };
+		E59607C62D5C4F9AA5617842 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B937A77E2B4420D9D95C5F2 /* libc++.tbd */; };
+		B152AC7BD0F247D9AC97B2CC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 443F258A87AD4438ADEE94AD /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +175,10 @@
 		AA0D31A79B324FC3B7100246 /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E9DEAF77DD1E42A4A7DE00B1 /* AirMaps.xcodeproj */ = {isa = PBXFileReference; name = "AirMaps.xcodeproj"; path = "../node_modules/react-native-maps/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		7BEF11677D024127B8CB9D21 /* libAirMaps.a */ = {isa = PBXFileReference; name = "libAirMaps.a"; path = "libAirMaps.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C7352C1DBF9D469E8BE3DB9F /* RealmReact.xcodeproj */ = {isa = PBXFileReference; name = "RealmReact.xcodeproj"; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		3423C2857BCD44DB9A3A1E9E /* libRealmReact.a */ = {isa = PBXFileReference; name = "libRealmReact.a"; path = "libRealmReact.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		6B937A77E2B4420D9D95C5F2 /* libc++.tbd */ = {isa = PBXFileReference; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
+		443F258A87AD4438ADEE94AD /* libz.tbd */ = {isa = PBXFileReference; name = "libz.tbd"; path = "usr/lib/libz.tbd"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = sourcecode.text-based-dylib-definition; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +206,9 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				1BD4B4F239FB42478E5AAEE2 /* libRNVectorIcons.a in Frameworks */,
 				9DF652C792DF431D8E029FF7 /* libAirMaps.a in Frameworks */,
+				8826037447BD44E984EB1BBC /* libRealmReact.a in Frameworks */,
+				E59607C62D5C4F9AA5617842 /* libc++.tbd in Frameworks */,
+				B152AC7BD0F247D9AC97B2CC /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -323,6 +333,7 @@
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				45A37D8F76E442A79C38B405 /* RNVectorIcons.xcodeproj */,
 				E9DEAF77DD1E42A4A7DE00B1 /* AirMaps.xcodeproj */,
+				C7352C1DBF9D469E8BE3DB9F /* RealmReact.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -343,6 +354,7 @@
 				00E356EF1AD99517003FC87E /* lemeatAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				6BA2AD21BB954157A20169BC /* Resources */,
+				DBC0B01ADF4E46FEA7885475 /* Frameworks */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -382,6 +394,16 @@
 				AA0D31A79B324FC3B7100246 /* Zocial.ttf */,
 			);
 			name = Resources;
+			path = "";
+			sourceTree = "<group>";
+		};
+		DBC0B01ADF4E46FEA7885475 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6B937A77E2B4420D9D95C5F2 /* libc++.tbd */,
+				443F258A87AD4438ADEE94AD /* libz.tbd */,
+			);
+			name = Frameworks;
 			path = "";
 			sourceTree = "<group>";
 		};
@@ -688,6 +710,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Debug;
@@ -706,6 +729,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 			};
 			name = Release;
@@ -721,6 +745,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/AirMaps/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "lemeatApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -743,6 +768,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/AirMaps/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				INFOPLIST_FILE = "lemeatApp/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -795,6 +821,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/AirMaps/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -837,6 +864,7 @@
 					"$(SRCROOT)/../node_modules/react-native/React/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-maps/ios/AirMaps/**",
+					"$(SRCROOT)/../node_modules/realm/src/**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;

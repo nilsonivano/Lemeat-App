@@ -11,11 +11,6 @@ import {
 } from '@shoutem/ui'
 import TruckRow from './TruckRow'
 import Loading from './Loading'
-import Drawer from 'react-native-drawer'
-import images from '../config/images'
-import {colors} from '../config/styles'
-import ControlPanel from './ControlPanel'
-import {getDistanceFromLatLonInKm, deg2rad} from './auxFunctions'
 
 class LemeatTruckList extends React.Component {
     constructor(props) {
@@ -102,6 +97,7 @@ class LemeatTruckList extends React.Component {
             return (
                 <View style={styles.container}>
                     <Loading/>
+                    <Text style={{alignItems: 'center', justifyContent: 'center', padding: 10}}>Estamos carregando sua localização</Text>
                 </View>
             )
         }

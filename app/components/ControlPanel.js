@@ -8,10 +8,10 @@ import{
 } from 'react-native';
 
 import {Divider} from '@shoutem/ui';
-
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import images from '../config/images';
 import {colors} from '../config/styles';
+import TruckFavList from './TruckFavList';
 
 class ControlPanel extends React.Component {
     render() {
@@ -26,6 +26,7 @@ class ControlPanel extends React.Component {
                 </View>
                 <View style={styles.body}>
                     <Text style={styles.menuText}>Favoritos</Text>
+                    <TruckFavList/>
                 </View>
                 <View style={styles.bottom}>
                     <Divider styleName="line"/>
@@ -82,7 +83,8 @@ const styles = StyleSheet.create({
     },
     menuText: {
         fontSize: 14,
-        fontWeight: '300',
+        fontWeight: '500',
+        marginBottom: 10,
     }
 })
 
