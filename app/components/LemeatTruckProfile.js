@@ -142,6 +142,15 @@ class LemeatTruckProfile extends React.Component {
         }
     }
 
+    getTruckDescription(){
+        var truckFullDescription = this.state.data[0].profile.fullDescription;
+        if(truckFullDescription && truckFullDescription.length > 0){
+            return truckFullDescription
+        } else{
+            return "Sem descrição disponível"
+        }
+    }
+
     render() {
         var lemeatEntryPoint = "http://lemeat.com";
         if (this.state.data) {
@@ -164,7 +173,7 @@ class LemeatTruckProfile extends React.Component {
                         </Image>
                         <Screen styleName="paper">
                             <View style={styles.container}>
-                                <Text>{this.state.data[0].profile.fullDescription}</Text>
+                                <Text>{this.getTruckDescription()}</Text>
                             </View>
 
                             <Divider styleName="line"/>

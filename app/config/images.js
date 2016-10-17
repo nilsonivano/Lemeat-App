@@ -16,7 +16,8 @@ const images = {
     truck40: require('../images/Lemeat_marker_40.png'),
     truck50: require('../images/Lemeat_marker_50.png'),
     truck100: require('../images/Lemeat_marker_100.png'),
-    truck150: require('../images/Lemeat_marker_150.png')
+    truck150: require('../images/Lemeat_marker_150.png'),
+    userLoc150: require('../images/userLoc_marker.png'),
   }
 };
 
