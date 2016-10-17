@@ -27,6 +27,7 @@ import MenuRow from './MenuRow';
 import Loading from './Loading';
 import realm from '../config/realmDb';
 
+
 class LemeatTruckProfile extends React.Component {
     constructor(props) {
         super(props);

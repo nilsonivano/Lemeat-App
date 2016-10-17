@@ -2,11 +2,13 @@ import React from 'react';
 import{
     Text,
     View,
-    StyleSheet
+    StyleSheet,
+    TouchableOpacity,
 } from 'react-native';
 
 import ContactRow from './ContactRow';
 import {colors} from '../config/styles';
+import Communications from 'react-native-communications';
 
 class ContactList extends React.Component {
     getFacebook() {
@@ -14,11 +16,13 @@ class ContactList extends React.Component {
         if (contacts.facebook) {
             if (contacts.facebook.length > 1) {
                 return (
-                    <ContactRow
-                        contactTypeIcon="logo-facebook"
-                        contactType="Facebook"
-                        contactText={contacts.facebook}
-                    />
+                    <TouchableOpacity onPress={() => Communications.web(contacts.facebook)}>
+                        <ContactRow
+                            contactTypeIcon="logo-facebook"
+                            contactType="Facebook"
+                            contactText={contacts.facebook}
+                        />
+                    </TouchableOpacity>
                 )
             }
         }
@@ -29,11 +33,13 @@ class ContactList extends React.Component {
         if (contacts.instagram) {
             if (contacts.instagram.length > 1) {
                 return (
-                    <ContactRow
-                        contactTypeIcon="logo-instagram"
-                        contactType="Instagram"
-                        contactText={contacts.instagram}
-                    />
+                    <TouchableOpacity onPress={() => Communications.web(contacts.instagram)}>
+                        <ContactRow
+                            contactTypeIcon="logo-instagram"
+                            contactType="Instagram"
+                            contactText={contacts.instagram}
+                        />
+                    </TouchableOpacity>
                 )
             }
         }
@@ -44,11 +50,13 @@ class ContactList extends React.Component {
         if (contacts.twitter) {
             if (contacts.twitter.length > 1) {
                 return (
-                    <ContactRow
-                        contactTypeIcon="logo-twitter"
-                        contactType="Twitter"
-                        contactText={contacts.twitter}
-                    />
+                    <TouchableOpacity onPress={() => Communications.web(contacts.twitter)}>
+                        <ContactRow
+                            contactTypeIcon="logo-twitter"
+                            contactType="Twitter"
+                            contactText={contacts.twitter}
+                        />
+                    </TouchableOpacity>
                 )
             }
         }
@@ -59,11 +67,13 @@ class ContactList extends React.Component {
         if (contacts.website) {
             if (contacts.website.length > 1) {
                 return (
-                    <ContactRow
-                        contactTypeIcon="md-desktop"
-                        contactType="Website"
-                        contactText={contacts.website}
-                    />
+                    <TouchableOpacity onPress={() => Communications.web(contacts.website)}>
+                        <ContactRow
+                            contactTypeIcon="md-desktop"
+                            contactType="Website"
+                            contactText={contacts.website}
+                        />
+                    </TouchableOpacity>
                 )
             }
         }
@@ -74,11 +84,13 @@ class ContactList extends React.Component {
         if (contacts.email) {
             if (contacts.email.length > 1) {
                 return (
-                    <ContactRow
-                        contactTypeIcon="md-mail"
-                        contactType="Email"
-                        contactText={contacts.email}
-                    />
+                    <TouchableOpacity onPress={() => Communications.email([contacts.email], null, null, '', '')}>
+                        <ContactRow
+                            contactTypeIcon="md-mail"
+                            contactType="Email"
+                            contactText={contacts.email}
+                        />
+                    </TouchableOpacity>
                 )
             }
         }
@@ -89,11 +101,13 @@ class ContactList extends React.Component {
         if (contacts.phone) {
             if (contacts.phone.length > 1) {
                 return (
-                    <ContactRow
-                        contactTypeIcon="md-phone-portrait"
-                        contactType="Telefone"
-                        contactText={contacts.phone}
-                    />
+                    <TouchableOpacity onPress={() => Communications.phonecall(contacts.phone)}>
+                        <ContactRow
+                            contactTypeIcon="md-phone-portrait"
+                            contactType="Telefone"
+                            contactText={contacts.phone}
+                        />
+                    </TouchableOpacity>
                 )
             }
         }

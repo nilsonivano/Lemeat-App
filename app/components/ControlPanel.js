@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import images from '../config/images';
 import {colors} from '../config/styles';
 import TruckFavList from './TruckFavList';
+import Communications from 'react-native-communications';
 
 class ControlPanel extends React.Component {
     render() {
@@ -30,19 +31,13 @@ class ControlPanel extends React.Component {
                 </View>
                 <View style={styles.bottom}>
                     <Divider styleName="line"/>
-                    <TouchableOpacity>
-                        <View style={styles.bottomMenuRow}>
-                            <Icon name="share" size={24} color={colors.defaultPrimaryColor} style={{marginRight: 10}}/>
-                            <Text style={styles.menuText}>Compartilhe</Text>
-                        </View>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={()=> Communications.web('https://play.google.com/store/apps/details?id=br.com.cittabus')}>
                         <View style={styles.bottomMenuRow}>
                             <Icon name="thumb-up" size={24} color={colors.defaultPrimaryColor} style={{marginRight: 10}}/>
                             <Text style={styles.menuText}>Avalie o Lemeat no Google Play</Text>
                         </View>
                     </TouchableOpacity>
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={() => Communications.email(['contato@lemeat.com'],null,null,'Sugestão / Feedback Lemeat','')}>
                         <View style={styles.bottomMenuRow}>
                             <Icon name="help" size={24} color={colors.defaultPrimaryColor} style={{marginRight: 10}}/>
                             <Text style={styles.menuText}>Ajuda & Feedback</Text>

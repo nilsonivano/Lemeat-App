@@ -3,7 +3,6 @@ import{
     Text,
     View,
     StyleSheet,
-    TouchableOpacity
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -12,17 +11,15 @@ import {colors} from '../config/styles';
 class ContactRow extends React.Component {
     render() {
         return (
-            <TouchableOpacity>
-                <View style={styles.row}>
-                    <View style={styles.iconContainer}>
-                        <Icon name={this.props.contactTypeIcon} size={24} style={{color: colors.defaultPrimaryColor}}/>
-                    </View>
-                    <View style={styles.container}>
-                        <Text style={styles.contactType}>{this.props.contactType}</Text>
-                        <Text style={styles.contactText}>{this.props.contactText}</Text>
-                    </View>
+            <View style={styles.row}>
+                <View style={styles.iconContainer}>
+                    <Icon name={this.props.contactTypeIcon} size={24} style={{color: colors.defaultPrimaryColor}}/>
                 </View>
-            </TouchableOpacity>
+                <View style={styles.container}>
+                    <Text style={styles.contactType}>{this.props.contactType}</Text>
+                    <Text style={styles.contactText}>{this.props.contactText}</Text>
+                </View>
+            </View>
         )
     }
 }

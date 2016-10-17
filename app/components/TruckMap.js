@@ -21,8 +21,8 @@ class TruckMap extends React.Component {
             loading: true,
             markers: [],
             region: {
-                latitude: 37.78825,
-                longitude: -122.4324,
+                latitude: -23.553400,
+                longitude: -46.631425,
                 latitudeDelta: 0.0922,
                 longitudeDelta: 0.0421,
             },

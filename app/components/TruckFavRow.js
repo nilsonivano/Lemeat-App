@@ -32,7 +32,7 @@ class TruckFavRow extends Component {
             <TouchableOpacity
                 onPress={() => Actions.LemeatTruckProfile({truckId})}
             >
-                <View style={{flexDirection: 'row', padding: 5}}>
+                <View style={{flexDirection: 'row', padding: 10}}>
                     <Text style={{flex: 1}}>{this.props.truckFavorite}</Text>
                     <Icon name="star" size={24} style={{color: colors.defaultPrimaryColor}}/>
                 </View>
