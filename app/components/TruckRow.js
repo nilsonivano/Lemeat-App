@@ -71,6 +71,24 @@ class TruckRow extends React.Component {
         }
     }
 
+    getImg(){
+        if(this.props.haveImg){
+            return(
+                <Image
+                    styleName="medium rounded-corners"
+                    source={{uri: this.props.img}}
+                />
+            )
+        } else{
+            return(
+                <Image
+                    styleName="medium rounded-corners"
+                    source={images.LemeatNoImage}
+                />
+            )
+        }
+    }
+
     render() {
         var truckId = this.props.truckId;
         return (
@@ -80,10 +98,7 @@ class TruckRow extends React.Component {
                 <Row>
                     <View style={{flexDirection: 'column', flexWrap: 'wrap'}}>
                         <View style={{flexDirection: 'row'}}>
-                            <Image
-                                styleName="medium rounded-corners"
-                                source={{uri: this.props.img}}
-                            />
+                            {this.getImg()}
                             <View>
                                 <Text style={styles.truckName}>{this.props.truckName}</Text>
                                 <Text style={styles.truckSpeciality}>{this.props.speciality}</Text>
@@ -107,20 +122,11 @@ TruckRow.defaultProps = {
     tags: "",
     agendaStart: "",
     agendaEnd: "",
+    tags: [],
+
 };
 
 TruckRow.propTypes = {
-    truckId: React.PropTypes.string,
-    img: React.PropTypes.string,
-    truckName: React.PropTypes.string,
-    speciality: React.PropTypes.string,
-    mainCity: React.PropTypes.string,
-    tags: React.PropTypes.array,
-    agendaStart: React.PropTypes.string,
-    agendaEnd: React.PropTypes.string,
-    distance: React.PropTypes.number,
-    statusOpen: React.PropTypes.boolean,
-    haveAgenda: React.PropTypes.boolean,
 };
 
 const styles = StyleSheet.create({

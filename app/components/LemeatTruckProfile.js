@@ -26,6 +26,7 @@ import ContactList from './ContactList';
 import MenuRow from './MenuRow';
 import Loading from './Loading';
 import realm from '../config/realmDb';
+import images from '../config/images';
 
 
 class LemeatTruckProfile extends React.Component {
@@ -149,6 +150,29 @@ class LemeatTruckProfile extends React.Component {
             return truckFullDescription
         } else{
             return "Sem descrição disponível"
+        }
+    }
+
+    getImg(){
+        var lemeatEntryPoint = "http://lemeat.com";
+        if(this.state.data[0].profile.img.length > 1){
+            return(
+                <Image
+                    animationName="hero"
+                    styleName="large-portrait hero"
+                    source={{uri: lemeatEntryPoint + this.state.data[0].profile.img}}
+                    key={this.state.data[0].profile.name}
+                />
+            )
+        } else{
+            return(
+                <Image
+                    animationName="hero"
+                    styleName="large-portrait hero"
+                    source={images.LemeatNoImage}
+                    key={this.state.data[0].profile.name}
+                />
+            )
         }
     }
 

@@ -31,7 +31,7 @@ class ControlPanel extends React.Component {
                 </View>
                 <View style={styles.bottom}>
                     <Divider styleName="line"/>
-                    <TouchableOpacity onPress={()=> Communications.web('https://play.google.com/store/apps/details?id=br.com.cittabus')}>
+                    <TouchableOpacity onPress={()=> Communications.web('https://play.google.com/store/apps/details?id=com.lemeat&hl=pt_BR')}>
                         <View style={styles.bottomMenuRow}>
                             <Icon name="thumb-up" size={24} color={colors.defaultPrimaryColor} style={{marginRight: 10}}/>
                             <Text style={styles.menuText}>Avalie o Lemeat no Google Play</Text>

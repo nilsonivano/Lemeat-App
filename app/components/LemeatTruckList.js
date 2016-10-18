@@ -37,11 +37,16 @@ class LemeatTruckList extends React.Component {
                         return response.json();
                     })
                     .then((response) => {
+                        console.log(response);
                         //Colocando a imagem certa
                         for (let i = 0; i < response.length; i++) {
                             let img = response[i].profile.img;
-                            let imgReplace = img.replace("http://localhost:3000", "http://lemeat.com");
-                            response[i].profile.img = imgReplace;
+                            if(img.length <= 21){
+                                response[i].profile.haveImg = false
+                            } else{
+                                response[i].profile.img = img.replace("http://localhost:3000", "http://lemeat.com");
+                                response[i].profile.haveImg = true;
+                            }
                         }
                         this.setState({
                             data: response
@@ -86,6 +91,7 @@ class LemeatTruckList extends React.Component {
                                     distance={truck.userDistance}
                                     statusOpen={truck.statusOpen}
                                     haveAgenda={truck.haveAgenda}
+                                    haveImg={truck.profile.haveImg}
                                 />
                             )
                         }
