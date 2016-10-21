@@ -12,6 +12,7 @@ import images from '../config/images';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../config/styles';
 import moment from 'moment';
+import br from 'moment/locale/pt-br';
 import CustomCallout from './CustomCallout';
 
 class TruckMap extends React.Component {
@@ -58,6 +59,7 @@ class TruckMap extends React.Component {
                 let agendas = response;
                 console.log(agendas);
                 var markers = [];
+                moment.locale('pt-br');
                 for (agenda of agendas) {
                     if (typeof agenda.lat == 'string' && typeof agenda.lng == 'string') {
                         let date = moment(agenda.dateStart).format('MMMM Do YYYY');

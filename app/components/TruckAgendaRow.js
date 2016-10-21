@@ -9,9 +9,11 @@ import{
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../config/styles';
 import moment from 'moment';
+import br from 'moment/locale/pt-br';
 
 class TruckAgendaRow extends React.Component {
     render() {
+        moment.locale('pt-br');
         var date = moment(this.props.dateStart).format('MMMM Do YYYY');
         var dateStart = moment(this.props.dateStart).format('h:mm');
         var dateEnd = moment(this.props.dateEnd).format('h:mm');

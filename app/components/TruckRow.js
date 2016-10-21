@@ -3,12 +3,11 @@ import {
     StyleSheet,
     TouchableOpacity,
     Text,
-    View
+    View,
+    Dimensions
 } from 'react-native';
 import {
     Row,
-    Subtitle,
-    Caption,
     Image,
     Divider,
 } from '@shoutem/ui';
@@ -18,6 +17,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {colors} from '../config/styles';
 import images from '../config/images';
 import moment from 'moment';
+import br from 'moment/locale/pt-br';
 import {Actions} from 'react-native-router-flux';
 
 class TruckRow extends React.Component {
@@ -36,6 +36,7 @@ class TruckRow extends React.Component {
 
     checkAgendaStatus() {
         if (this.props.haveAgenda) {
+            moment.locale('pt-br');
             var agendaStart = moment(this.props.agendaStart).calendar();
             var distance = (this.props.distance).toFixed(1);
             return (
@@ -71,16 +72,16 @@ class TruckRow extends React.Component {
         }
     }
 
-    getImg(){
-        if(this.props.haveImg){
-            return(
+    getImg() {
+        if (this.props.haveImg) {
+            return (
                 <Image
                     styleName="medium rounded-corners"
                     source={{uri: this.props.img}}
                 />
             )
-        } else{
-            return(
+        } else {
+            return (
                 <Image
                     styleName="medium rounded-corners"
                     source={images.LemeatNoImage}
@@ -96,10 +97,10 @@ class TruckRow extends React.Component {
                 onPress={() => Actions.LemeatTruckProfile({truckId})}
             >
                 <Row>
-                    <View style={{flexDirection: 'column', flexWrap: 'wrap'}}>
+                    <View style={{flexDirection: 'column', width: window.width, paddingRight: 10}}>
                         <View style={{flexDirection: 'row'}}>
                             {this.getImg()}
-                            <View>
+                            <View style={styles.infoContainer}>
                                 <Text style={styles.truckName}>{this.props.truckName}</Text>
                                 <Text style={styles.truckSpeciality}>{this.props.speciality}</Text>
                                 {this.checkOpenStatus()}
@@ -126,8 +127,9 @@ TruckRow.defaultProps = {
 
 };
 
-TruckRow.propTypes = {
-};
+TruckRow.propTypes = {};
+
+const window = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     smallText: {
@@ -144,10 +146,17 @@ const styles = StyleSheet.create({
         color: 'white',
         padding: 3,
     },
+    infoContainer: {
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        paddingRight: 10,
+        flex: 1
+    },
     tagContainer: {
         marginTop: 10,
         flexDirection: 'row',
         flexWrap: 'wrap',
+        paddingRight: 10
     },
     tagBox: {
         borderRadius: 10,
@@ -169,6 +178,7 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: colors.secondaryTextColor,
         marginBottom: 5,
+        flexWrap: 'wrap',
     }
 });
 
